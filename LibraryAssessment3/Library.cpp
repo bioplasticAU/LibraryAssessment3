@@ -169,6 +169,9 @@ void sortBooks() {
         }
     }
     cout << endl;
+    cout << "==> The books have been sorted!" << endl;
+    cout << "==> Select 1 to display all books to if you wish to see them." << endl;
+    cout << endl;
 }
 
 void addNewBooks() {
@@ -185,25 +188,28 @@ void addNewBooks() {
     while (addAnotherBook) {
         Book book; // create a book variable / instance to store the data.
         cin.ignore();
-        cout << "Book's title: ";
+        cout << "==> Book's title: ";
         getline(cin, title);
-        cout << "Book's ISBN: ";
+        cout << "==> Book's ISBN: ";
         getline(cin, isbn);
-        cout << "Book's author: ";
+        cout << "==> Book's author: ";
         getline(cin, author);
         //place all information in the created book
         book.setBookDetails(title, isbn, author, true);
         //adding the book to the array
         arrayBook[index] = book;
-        cout << "Book: " << book.title << " added."<<endl;
+        cout << "==> Book: " << book.title << " added."<<endl;
         index++; // increment the book index
+        cout << "==> Would you like to add another book (Y/N) ? ";
         bool valid = false;
         while (!valid) {
-            cout << "Would you like to add another book (Y/N) ? ";
             cin >> answer;
             if (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
                 valid = false;
                 cout << "==> Wrong answer, please input Y for Yes and N for No"<< endl;
+            }
+            else {
+                valid = true;
             }
         }
         if (answer == 'N' or answer == 'n') {
