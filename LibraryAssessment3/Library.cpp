@@ -1,5 +1,6 @@
 // Library.cpp : This file contains the 'main' function. Program execution begins and ends there.
 #include <iostream>
+#include <string>
 #include "Book.h"
 using namespace std;
 
@@ -184,11 +185,11 @@ void addNewBooks() {
     while (addAnotherBook) {
         Book book; // create a book variable / instance to store the data.
         cout << "Book's title: ";
-        cin >> title;
+        getline(cin, title);
         cout << "Book's ISBN: ";
-        cin >> isbn;
+        getline(cin, isbn);
         cout << "Book's author: ";
-        cin >> author;
+        getline(cin, author);
         //place all information in the created book
         book.setBookDetails(title, isbn, author, true);
         //adding the book to the array
