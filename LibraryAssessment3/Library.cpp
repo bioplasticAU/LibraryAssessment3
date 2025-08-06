@@ -197,9 +197,16 @@ void addNewBooks() {
         arrayBook[index] = book;
         cout << "Book: " << book.title << " added."<<endl;
         index++; // increment the book index
-        cout << "Would you like to add another book (Y/N) ? ";
-        cin >> answer;
-        if (answer == 'N' or answer == 'n'){
+        bool valid = false;
+        while (!valid) {
+            cout << "Would you like to add another book (Y/N) ? ";
+            cin >> answer;
+            if (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
+                valid = false;
+                cout << "==> Wrong answer, please input Y for Yes and N for No"<< endl;
+            }
+        }
+        if (answer == 'N' or answer == 'n') {
             addAnotherBook = false;
         }
     }
