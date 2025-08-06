@@ -184,6 +184,7 @@ void addNewBooks() {
     bool addAnotherBook = true;
     while (addAnotherBook) {
         Book book; // create a book variable / instance to store the data.
+        cin.ignore();
         cout << "Book's title: ";
         getline(cin, title);
         cout << "Book's ISBN: ";
