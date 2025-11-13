@@ -13,7 +13,6 @@ void addNewBooks();
 void clearScreen();
 
 Book arrayBook[100];
-//TODO: Change totalBooks to 5
 int totalBooks = 0;
 
 int main()
@@ -159,7 +158,9 @@ void returnBooks() {
 }
 void sortBooks() {
     cout << "========================================" << endl;
-    cout << char(178) << "             Sorted Books             " << char(178) << endl;
+    cout << char(178);
+    cout << "        Books Sorted By Title         "; 
+    cout << char(178) << endl;
     cout << "========================================" << endl;
     Book temp;
     for (int i = 0; i < totalBooks -1 ; i++){
@@ -172,7 +173,7 @@ void sortBooks() {
             }
         }
     }
-    cout << endl;
+    
     int counter = 0;
     for (int i = 0; i < totalBooks; i++)
     {
@@ -186,7 +187,7 @@ void sortBooks() {
         }
     }
     if (counter == 0) {
-        cout << char(178) << " There are NO Books registered yet! " << char(178) << endl;
+        cout << char(178) << "  There are NO Books registered yet!  " << char(178) << endl;
     }
 
     cout << endl;
