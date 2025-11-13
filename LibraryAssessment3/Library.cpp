@@ -12,9 +12,9 @@ void sortBooks();
 void addNewBooks();
 void clearScreen();
 
-Book arrayBook[300];
+Book arrayBook[100];
 //TODO: Change totalBooks to 5
-int totalBooks = 3;
+int totalBooks = 0;
 
 int main()
 {
@@ -64,14 +64,14 @@ int main()
 
 void showMenu() {
     cout << "========================================" << endl;
-    cout << "=             LIBRARY MENU             =" << endl;
+    cout << char(178) << "             LIBRARY MENU             " << char(178) << endl;
     cout << "========================================" << endl;
-    cout << "= 1: Show all books                    =" << endl;
-    cout << "= 2: Borrow Books                      =" << endl;
-    cout << "= 3: Return a Book                     =" << endl;
-    cout << "= 4: Sort Books                        =" << endl;
-    cout << "= 5: Add New Books                     =" << endl;
-    cout << "= 6: QUIT the program                  =" << endl;
+    cout << char(178) << " 1: Show all books                    " << char(178) << endl;
+    cout << char(178) << " 2: Borrow Books                      " << char(178) << endl;
+    cout << char(178) << " 3: Return a Book                     " << char(178) << endl;
+    cout << char(178) << " 4: Sort Books                        " << char(178) << endl;
+    cout << char(178) << " 5: Add New Books                     " << char(178) << endl;
+    cout << char(178) << " 6: QUIT the program                  " << char(178) << endl;
     cout << "========================================" << endl;
     cout << endl;
 
@@ -79,9 +79,10 @@ void showMenu() {
 
 void showAllBooks() {
     cout << "========================================" << endl;
-    cout << "=          Displaying all Books        =" << endl;
+    cout << char(178) << "          Displaying all Books        " << char(178) << endl;
     cout << "========================================" << endl;
     int counter = 0;
+    
     for (int i = 0; i < totalBooks; i++)
     {
         //validate the book has at least isbn and also title to display it
@@ -94,14 +95,14 @@ void showAllBooks() {
         }
     }
     if (counter == 0) {
-        cout << "==> There are NO Books registered yet!" << endl;
+        cout << char(178) << "  There are NO Books registered yet!  " << char(178) << endl;
     }
     cout << endl;
 }
 
 void borrowBooks() {
     cout << "========================================" << endl;
-    cout << "=             Borrowing Books          =" << endl;
+    cout << char(178)<<"             Borrowing Books          "<<char(178) << endl;
     cout << "========================================" << endl;
     string isbnToBorrow = "";
     bool found = false;
@@ -137,7 +138,7 @@ void borrowBooks() {
 void returnBooks() {
     bool found = false;
     cout << "========================================" << endl;
-    cout << "=            Returning Books           =" << endl;
+    cout << char(178) << "            Returning Books           " << char(178) << endl;
     cout << "========================================" << endl;
     string isbnToReturn;
     cout << "==> Input the ISBN of the book you want to return, 0 (zero) to QUIT ";
@@ -158,10 +159,10 @@ void returnBooks() {
 }
 void sortBooks() {
     cout << "========================================" << endl;
-    cout << "=             Sorting Books            =" << endl;
+    cout << char(178) << "             Sorted Books             " << char(178) << endl;
     cout << "========================================" << endl;
     Book temp;
-    for (int i = 0; i < totalBooks - 1; i++){
+    for (int i = 0; i < totalBooks -1 ; i++){
         for (int j = i + 1; j < totalBooks; j++){
             if (arrayBook[i].title > arrayBook[j].title) {
                 //swap book positions
@@ -172,17 +173,35 @@ void sortBooks() {
         }
     }
     cout << endl;
+    int counter = 0;
+    for (int i = 0; i < totalBooks; i++)
+    {
+        //validate the book has at least isbn and also title to display it
+        if (!arrayBook[i].isbn.empty() && !arrayBook[i].title.empty()) {
+            cout << "isbn: " << arrayBook[i].isbn << ", "
+                << "title: " << arrayBook[i].title << ", "
+                << "author: " << arrayBook[i].author << ", "
+                << "available: " << arrayBook[i].available << endl;
+            counter++;
+        }
+    }
+    if (counter == 0) {
+        cout << char(178) << " There are NO Books registered yet! " << char(178) << endl;
+    }
+
+    cout << endl;
 }
 
 void addNewBooks() {
     cout << "========================================" << endl;
-    cout << "=            Adding New Books          =" << endl;
+    cout << char(178) << "            Adding New Books          " << char(178) << endl;
     cout << "========================================" << endl;
     string title;
     string isbn;
     string author;
     bool available;
-    int index = 0;
+    //int index = 0;
+    
     char answer;
     bool addAnotherBook = true;
     while (addAnotherBook) {
@@ -198,16 +217,18 @@ void addNewBooks() {
         //place all information in the created book
         book.setBookDetails(title, isbn, author, true);
         //adding the book to the array
-        arrayBook[index] = book;
+        arrayBook[totalBooks] = book;
         cout << "Book: " << book.title << " added."<<endl;
-        index++; // increment the book index
+        totalBooks++; // increment the book index
         cout << "Would you like to add another book (Y/N) ? ";
         cin >> answer;
         if (answer == 'N' or answer == 'n'){
             addAnotherBook = false;
         }
     }
+    
     cout << endl;
+    
 }
 
 void clearScreen() {
